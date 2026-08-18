@@ -23,6 +23,8 @@ For example:
       - Defensive Impact --> 55
       # Player DNA Framework
 
+
+
 Core basketball capabilities could be defined by: (wip, stats that affect could be changed)
 
 ## Scoring
