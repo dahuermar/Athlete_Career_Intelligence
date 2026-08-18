@@ -20,11 +20,11 @@ Sports agencies operate under uncertainty.
 
 At any given moment, agents must decide which players deserve their attention, resources, and long-term investment.
 
-The challenge is that current performance does not always translate into future success.
+  ### The challenge is that current performance does not always translate into future success.
 
 Some players dominate at the college level but struggle professionally.
 
-Others enter professional basketball with limited expectations and eventually become valuable NBA contributors.
+Others enter professional basketball with limited expectations, being undrafted and eventually become valuable NBA contributors.
 
 The purpose of Future Value is to provide a consistent framework for evaluating long-term player potential.
 
@@ -42,9 +42,7 @@ The score should incorporate multiple indicators of career success.
 
 ### Long-Term Oriented
 
-The objective is not to predict next-season performance.
-
-The objective is to estimate long-term career outcomes.
+The objective is not to predict next-season performance, but long-term career outcomes.
 
 ### Position-Agnostic
 
@@ -64,10 +62,10 @@ The methodology should support new metrics and data sources as the project evolv
 
 A successful player typically demonstrates one or more of the following:
 
-- Long professional career
+- Long professional career (The average career length for an NBA player is about 4.5 to 5 years)
 - Consistent NBA contribution
 - Strong advanced impact metrics
-- Recognition and awards
+- Accolades, recognition and awards
 - Financial success
 - Ability to remain valuable across multiple seasons
 
@@ -98,8 +96,8 @@ Measures the player's on-court contribution.
 Potential metrics:
 
 - Career Win Shares
-- Career VORP
-- BPM
+- Career VORP (Value Over Replacement Player)
+- BPM (Box Plus/Minus)
 - Advanced Impact Metrics
 
 ---
@@ -208,6 +206,8 @@ Examples:
 - Draymond Green
 - Fred VanVleet
 - Nikola Jokic
+- Alex Caruso
+- Austin Reaves
 
 ---
 
