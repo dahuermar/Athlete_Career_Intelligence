@@ -63,11 +63,13 @@ These areas are outside the scope of the MVP.
 
 The platform requires four primary datasets.
 
-## Dataset 1: NCAA Players
+## Dataset 1: NBA Players
 
 Purpose:
 
-Understand player profiles before entering professional basketball.
+Understand player profiles and clustering archetypes.
+
+In order to do that, we established a minimum of 25 games played per season, with the aim of defining those profiles
 
 Key Variables:
 
