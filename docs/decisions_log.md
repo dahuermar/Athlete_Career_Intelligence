@@ -85,3 +85,38 @@ clustering is meant to capture).
 
 **Outcome:** `tp_pct` and `ft_pct` filled with 0 for zero-attempt
 player-seasons. All 17 feature columns now
+
+## [2026-09-15] Number of clusters (k) for player archetype model
+
+**Decision:** k=12, using KMeans on the 6-component PCA representation.
+
+**Context:** Silhouette score analysis showed a clear statistical
+optimum at k=3 (0.278), declining steadily as k increases. However,
+k=3 is too coarse for the project's goal — it would likely separate
+little more than broad positional groups (bigs/wings/guards), not the
+finer playing-style archetypes needed for market inefficiency analysis.
+
+**Data considered:**
+1. Re-ran silhouette analysis using only 2 PCA components instead of
+   6: the same k=3 > k=8 > k=12 ordering held, confirming the decline
+   is structural (a real continuum of playing styles), not noise from
+   extra PCA dimensions.
+2. At k=12, only 4.6% of player-seasons had negative silhouette values
+   (poorly assigned), the lowest of any candidate k tested — improving
+   as k increased, even as the overall average silhouette score fell.
+3. Cluster size balance checked across k=9 (894–1,579), k=10
+   (739–1,556), and k=12 (477–1,433) — all reasonably balanced, no
+   candidate produced a dominant mega-cluster or negligibly small ones.
+
+**Alternatives considered:** k=3 (rejected — statistically optimal
+but too coarse for the project's scouting purpose); k=9 (close
+runner-up — best global silhouette among practical candidates and
+largest minimum cluster size, but coarser granularity and a slightly
+higher poorly-assigned rate than k=12).
+
+**Outcome:** k=12 selected for the final KMeans model, applied to the
+6-component PCA representation (random_state=42, n_init=10). The
+choice prioritizes assignment quality and archetype granularity over
+maximizing the global silhouette score, anchored loosely to the
+interpretive frame of a 12-player NBA roster (not a statistical
+justification).
