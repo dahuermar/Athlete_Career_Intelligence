@@ -120,3 +120,41 @@ choice prioritizes assignment quality and archetype granularity over
 maximizing the global silhouette score, anchored loosely to the
 interpretive frame of a 12-player NBA roster (not a statistical
 justification).
+
+## [2026-09-15] Adding player height as a clustering feature
+
+**Decision:** Add `heightInches` (from Players.csv) as an 18th feature,
+re-running PCA (now 7 components, 87.8% variance) and KMeans (k=12
+unchanged) on the expanded feature set.
+
+**Context:** Sanity-checking the original 17-feature model against
+known players (Curry, Jokić, Embiid, Durant, Gobert, Claxton, Young,
+Edwards, Giddey, Johnson) revealed that stylistically distinct
+superstars — particularly Jokić and Curry — were landing in the same
+cluster. Both share high usage and low assisted-shot percentage
+(both create their own offense), but are fundamentally different
+archetypes physically and positionally. `rebounds_pg` was already in
+the feature set but wasn't a strong enough signal on its own to
+separate them, since rebounding varies season to season while height
+is a fixed structural trait.
+
+**Data considered:** Re-ran the same player sanity check with height
+included. Jokić moved out of the guard-creator cluster into a
+dedicated "Franchise Big / Point-Center" cluster shared with Embiid —
+a much more basketball-coherent pairing. Gobert and Claxton converged
+into the same "Rim Protector" cluster in their established seasons.
+Silhouette score decreased slightly (0.1690 → 0.1574 at k=12), a
+worthwhile tradeoff for the conceptual separation gained.
+
+**Alternatives considered:** Keeping the 17-feature model as-is
+(rejected — the guard/big conflation would misrepresent player type
+for the project's core use case); using position flags (guard/
+forward/center, also available in Players.csv) instead of continuous
+height (not tested — height is more granular and avoids relying on
+sometimes-arbitrary positional labels).
+
+**Outcome:** Final feature set = 18 columns (17 original + heightInches),
+7 PCA components, k=12. Two of Jokić's most recent seasons (2024-25,
+2025-26) still cluster with elite guards due to historically extreme
+assist rates for his position — noted as a defensible edge case, not
+a modeling failure, since those seasons are genuine playmaking outliers.
