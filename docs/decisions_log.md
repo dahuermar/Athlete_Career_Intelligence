@@ -58,3 +58,30 @@ so a stricter minutes cutoff would remove exactly the players this
 project is meant to surface).
 
 **Outcome:** avg_minutes_min = 8, combined with games_played_min = 25.
+
+## [2026-09-15] Missing value imputation for shooting percentage features
+
+**Decision:** Fill missing values in `tp_pct` (850 cases) and `ft_pct`
+(2 cases) with 0, rather than dropping rows or imputing with the mean.
+
+**Context:** Both columns are computed as makes/attempts recalculated
+from season totals (see the earlier decision on avoiding averaged
+per-game percentages). A null value in either column means the player
+had zero attempts of that shot type all season, not a data quality
+issue — e.g. traditional interior players who never attempt a
+3-pointer, or low-usage role players who never draw a shooting foul.
+
+**Data considered:** All 850 `tp_pct` nulls and both `ft_pct` nulls
+were checked against their corresponding `*a_total` (attempts) column,
+confirming 0 attempts in every case — no evidence of a data quality
+problem or a bug in the aggregation pipeline.
+
+**Alternatives considered:** Dropping these rows (rejected — would
+remove legitimate, common playing styles like traditional post players
+from the dataset, biasing the clustering); imputing with the column
+mean (rejected — would fabricate a shooting tendency the player never
+actually exhibited, distorting exactly the kind of signal this
+clustering is meant to capture).
+
+**Outcome:** `tp_pct` and `ft_pct` filled with 0 for zero-attempt
+player-seasons. All 17 feature columns now
